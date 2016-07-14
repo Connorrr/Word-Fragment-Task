@@ -1,0 +1,11 @@
+#File: 			WordFragmentTaskGlobals.sce
+#Description:	Contains the subroutines used in the experiment
+#Programmer:	Connor Reid (Psy Technician)
+#Created@:		13/07/2016
+#LastMod@:		13/07/2016
+#ModifiedBy:	Connor Reid
+#Copyright@: 	School Of Psychology, Griffith University
+#-------------------------------------------------------------------
+
+array <string> KEYS[27] = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","space"};
+int SPACE = 27;

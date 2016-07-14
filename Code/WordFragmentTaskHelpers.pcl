@@ -1,0 +1,80 @@
+#File: 			WordFragmentTaskHelpers.sce
+#Description:	Contains the subroutines used in the experiment
+#Programmer:	Connor Reid (Psy Technician)
+#Created@:		13/07/2016
+#LastMod@:		13/07/2016
+#ModifiedBy:	Connor Reid
+#Copyright@: 	School Of Psychology, Griffith University
+#-------------------------------------------------------------------
+
+sub string getLetterFromInputNumber(int key) begin
+	return KEYS[key];
+end;
+
+sub print_2d_array(array <string, 2>& arr) begin		##Used to terminal print 2d arrays
+	loop int j = 1 until j > arr.count() begin
+		term.print(string(j) + ": ");
+		loop int k = 1 until k > arr[j].count() begin
+			term.print(arr[j][k] + "\t");
+			k = k + 1;
+		end;
+		term.print("\n");
+		j = j + 1;
+	end;
+end;
+
+sub
+	get_input_csv(string file_path, array <string, 2>& stim)		# Get stimulus from this multi column file.  
+begin
+	stim.resize(0);
+	
+	input_file in_stim = new input_file;
+
+	in_stim.open(file_path);
+
+	in_stim.set_delimiter( ',' ); 	# for get_line()
+
+	array <string> tmpstim[0];
+		
+	loop int count = 1 until
+		in_stim.end_of_file() || count == 100 || !in_stim.last_succeeded()
+	begin
+		in_stim.get_string().split(",",tmpstim);
+		if (tmpstim[1] != "")then
+			stim.add(tmpstim);
+			tmpstim.resize(0);
+		end;
+		count = count + 1;
+	end;
+
+	#print_2d_array(stim);
+end;
+
+sub setAndShowWord(string stim) begin
+	main_text.set_caption(stim);
+	main_text.redraw();
+	main_trial.present();
+end;
+
+### get the original word (originalWord) and replace the first underscore with the new letter selected via keypress (key).  Returns the new String
+sub string getNewWord(string originalWord, int key) begin
+	array <int> charIndex[26] = {65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90};	
+	int index = originalWord.find("_");		#  index for first underscore in the word
+	if (key != SPACE) then
+		originalWord.set_char(index,charIndex[key]);
+	end;
+	return originalWord;
+end;
+
+## Save Output Data
+sub
+saveTrialData(output_file out,string originalWord,  string word, int rt)
+begin
+	out.print(originalWord);
+	out.print(",");
+	out.print(word);
+	out.print(",");
+	out.print(rt);
+	out.print("\n");
+end;
+

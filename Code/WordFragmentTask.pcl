@@ -1,0 +1,73 @@
+#File: 			WordFragmentTask.pcl
+#Description:	Contains the subroutines used in the experiment
+#Programmer:	Connor Reid (Psy Technician)
+#Created@:		13/07/2016
+#LastMod@:		13/07/2016
+#ModifiedBy:	Connor Reid
+#Copyright@: 	School Of Psychology, Griffith University
+#-------------------------------------------------------------------
+
+include "WordFragmentTaskGlobals.pcl";
+include "WordFragmentTaskHelpers.pcl";
+
+preset int Age = 18;
+preset int Gender = 1;	# Female = 2;Male = 1
+
+output_file out = new output_file;
+out.open(logfile.subject()+"_WFT_" + date_time("hhnnss_dd-mm-yyyy") + ".csv");
+out.print("student number: "+logfile.subject()+","+"Age: "+string(Age)+","+"Gender: "+string(Gender)+"\n");	#print the trial index
+out.print("Original Word,Word,RT\n");	#print the trial index
+
+array <string> words[0][0];
+
+get_input_csv("Words.csv",words);
+
+words.shuffle();
+
+instructions_trial.present();
+
+##########  Begin Trials  ######################
+int i=0;
+loop 
+	i = 1;
+until 
+	i > words.count()		#  Loop through rows in csv
+begin
+	string originalWord = words[i][1];		#  Original Word to be displayed
+	string word = words[i][1];					#  String to be manipulated
+
+	setAndShowWord(word);
+	
+	loop
+		int j = 1;
+		int rt = 0;
+	until
+		j > int(words[i][2])+1	#  Loop until the blanks have been filled
+	begin
+		if (bool( response_manager.response_count() )) then		#  If a key is pressed
+			stimulus_data last = stimulus_manager.last_stimulus_data();		#  Last button Pressed
+			rt = rt + last.reaction_time();
+			if (j >= int(words[i][2])+1) then		#  If all blank spaces have been filled in the word 
+				if (last.button() != SPACE) then		#  Ignore all buttons but spacebar to progress
+					setAndShowWord(word);
+					j = j - 1;
+				else		##  Finish up this trial
+					saveTrialData(out, originalWord, word, rt);
+				end;
+			else
+				if (last.button() == SPACE) then ##  If it's not the last letter and the space bar is pressed
+					setAndShowWord(word);
+					j = j - 1;		# ignore the button press
+				else
+					word = getNewWord(word, last.button());		#  Get new word 
+					setAndShowWord(word);
+				end;
+			end;
+		end;
+		j = j + 1;
+	end;	
+	i = i + 1;
+end;
+
+goodbye_trial.present();
+
