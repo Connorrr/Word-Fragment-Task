@@ -2,7 +2,7 @@
 #Description:	Contains the subroutines used in the experiment
 #Programmer:	Connor Reid (Psy Technician)
 #Created@:		13/07/2016
-#LastMod@:		13/07/2016
+#LastMod@:		2/08/2016
 #ModifiedBy:	Connor Reid
 #Copyright@: 	School Of Psychology, Griffith University
 #-------------------------------------------------------------------
@@ -25,7 +25,8 @@ begin;
 ###################  Text  #############################################
 
 text{
-	caption = "You will be provided with 38 fragmented words.\n\n Please fill in letters in the blanks to create the first word that comes to mind.\n\nWhen you are ready to progress press the Spacebar";
+	caption = "You will be provided with 38 fragmented words.\n\n Please fill in letters in the blanks to create the <u>first word that comes to mind</u>.\nFor example T_ E could becompleted as THE.\n\nWhen you are ready to progress press the Spacebar";
+	formatted_text = true;
 }instructions_text;
 
 text{
@@ -41,6 +42,8 @@ picture{
 picture{
 	text{
 		caption = "BUR__D";
+		width = 1;
+		font = "Baskerville Old Face";
 		font_size = 80;
 	}main_text; x = 0; y = 0;
 }main_pic;
