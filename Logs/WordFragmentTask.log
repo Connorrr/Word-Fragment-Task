@@ -1,30 +1,22 @@
 Scenario - WordFragmentTask
-Logfile written - 07/13/2016 13:04:26
+Logfile written - 08/08/2016 10:55:09
 
 Subject	Trial	Event Type	Code	Time	TTime	Uncertainty	Duration	Uncertainty	ReqTime	ReqDur	Stim Type	Pair Index
 
-Connor	1	Response	27	9845	9679	1
-Connor	2	Response	18	24883	14874	1
-Connor	3	Response	5	40082	15059	1
-Connor	4	Response	27	46642	6438	1
-Connor	5	Response	2	65361	18651	1
-Connor	6	Response	12	69041	3647	1
-Connor	7	Response	27	74081	5017	1
-Connor	8	Response	2	102159	27924	1
-Connor	9	Response	9	117278	15016	1
-Connor	10	Response	27	121677	4235	1
-Connor	11	Response	3	139277	17497	1
-Connor	12	Response	5	140396	1100	1
-Connor	13	Response	27	144716	4252	1
-Connor	14	Response	21	157035	12234	1
-Connor	15	Response	27	158475	1329	1
-Connor	16	Response	15	186954	28306	1
-Connor	17	Response	3	188873	1865	1
-Connor	18	Response	27	192873	3863	1
-Connor	19	Response	12	213513	20500	1
-Connor	20	Response	4	215912	2380	1
-Connor	21	Response	27	220391	4356	1
-Connor	22	Response	5	237910	17371	1
-Connor	23	Response	1	238870	815	1
-Connor	24	Response	27	242950	4060	1
-Connor	25	Quit		250389	7329
+1	1	Response	27	51903	51737	1
+1	2	Response	15	62783	10785	1
+1	3	Response	5	64622	1792	1
+1	4	Response	27	80622	15958	1
+1	5	Response	5	91422	10759	1
+1	6	Response	18	92941	1445	1
+1	7	Response	27	95981	2985	1
+1	8	Response	11	106461	10298	1
+1	9	Response	19	113181	6685	1
+1	10	Response	11	114301	972	1
+1	11	Response	27	123661	9332	1
+1	12	Response	20	140780	16952	1
+1	13	Response	15	143500	2672	1
+1	14	Response	27	151500	7839	1
+1	15	Response	19	176619	24958	1
+1	16	Response	11	177258	598	1
+1	17	Quit		198938	21611
